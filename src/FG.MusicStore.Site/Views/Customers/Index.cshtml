@@ -1,0 +1,47 @@
+@model IEnumerable<FG.MusicStore.Application.ViewModels.CustomerViewModel>
+
+@{
+    ViewData["Title"] = "Lista de Clientes";
+}
+
+<div class="container">
+
+    <h2>@ViewData["Title"]:</h2>
+    <p>Lista de clientes em ordem alfabética:</p>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a asp-controller="Customers" asp-action="Create" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Novo Cliente</a>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in Model)
+            {
+                <tr>
+                    <td>@cliente.Name</td>
+                    <td>@cliente.Email</td>
+
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@cliente.Id" title="Edit" class="btn btn-warning">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>                     
+                        <a asp-action="Delete" asp-route-id="@cliente.Id" title="Delete" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
